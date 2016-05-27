@@ -1,0 +1,4 @@
+bulk insert [dbo].[Employees]
+from 'C:\Zar\Courses.csv'
+with (fieldterminator = ',', rowterminator = '\n')
+go
