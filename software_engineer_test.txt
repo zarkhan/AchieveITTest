@@ -83,16 +83,55 @@ employee                              department
 
 5.  Write an SQL query to list the full name of every employee,
     alphabetized by first name.
+	
+			select * from [dbo].[employee]
+			order by name, id asc;
+	
+	
+	
 6.  Write an SQL query to list the full name of every employee,
     alphabetized by last name.
+	
+			select id, name as fullname,
+			substring(name, 1,  charindex(' ', name) -1) as firstname,
+			substring(name ,charindex(' ', name) + 1 ,len(name)) lastname,
+			mgr_id 
+			from [dbo].[employee]
+			order by lastname, firstname asc;
+	
+	
 7.  Write an SQL query to list the full name of every employee along
     with the full name of his/her manager.
+	
+			select e.id, e.name as employeeName, e.mgr_id, e1.name as managerName
+			from [dbo].[employee] e
+			left join [dbo].[employee] e1 on e.mgr_id = e1.id
+	
+	
 8.  Write an SQL query to list the full name of every employee in the
     Sales department.
+	
+			select e.id, e.name as fullname, e.mgr_id 
+			from [dbo].[employee] e
+			join [dbo].[department] d on e.mgr_id = d.head
+			where d.name = 'Sales';
+				
+	
+	
 9.  Write an SQL query to list the full name of every employee along
     with name of his/her department.
+
+			select e.id, e.name as fullname, e.mgr_id, d.name as departName
+			from [dbo].[employee] e
+			left join [dbo].[department] d on e.mgr_id = d.head
+			order by d.name;
+	
+	
 10. Is there a better design for a database that supports the queries
     described in questions 5-9?  If so, describe it.  If not, why not?
+	
+		The schema of employee table can improved by separating name column into firstName and LastName columns.
+	
 11. Write a function in the language of your choice that implements
     quicksort on an array of integers.
 12. Write a function in the language of your choice that performs
