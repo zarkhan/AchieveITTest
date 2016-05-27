@@ -38,6 +38,12 @@ Developer Test
 4.  Consider a user querying a search engine.  Describe, in as much
     detail as you like, what happens between the user clicking the
     "submit" button and the display of the results.
+	
+	Answer:
+	The client side / UI / browser (html/javascript) does the http post/get with the search parameters, if any
+	
+	and pass to the backend. The backend servcies layer will pass the 
+	parameters the business/data access layer.
 
 The two tables below describe relationships between employees,
 managers, and departments (the columns employee.mgr_id and
